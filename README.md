@@ -1,6 +1,6 @@
 # ScoreboardEssentials
 
-A custom configurable "style" plugin. Styles the scoreboard and the join message.
+A custom configurable "style" plugin. Styles the scoreboard and the join messages.
 
 ## Authors
 

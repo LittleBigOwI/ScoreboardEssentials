@@ -1,0 +1,8 @@
+# The different ranks prefixes for the server from lowest to highest
+ranks: [G, P, P+, M, PC, PC+]
+
+# The playtime required to obtain each rank
+playtime: [0, 500, 1000, 1500, 2000, 2500]
+
+# The color of each rank
+colors: [aaaaaa, 59deff, 59afff, 5975ff, ffaa00, ffaa00]

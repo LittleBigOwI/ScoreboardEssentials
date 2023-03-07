@@ -4,18 +4,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 import java.awt.Color;
 
+import net.md_5.bungee.api.ChatColor;
 import net.philocraft.ScoreboardEssentials;
 
 public class Database {
     
     private static ArrayList<Rank> ranks = new ArrayList<>();
-
+    private static String scoreboardHeader;
+    private static String scoreboardFooter;
+    private static String maxPlayers;
+    
     private ScoreboardEssentials plugin;
 
     private Database(ScoreboardEssentials plugin) {
         this.plugin = plugin;
+    }
+
+    private static String getLine(int a, ChatColor c) {
+        String spaces = "";
+        for(int i = 0; i < a; i++) {
+            spaces += " ";
+        }
+
+        return c + "" + ChatColor.STRIKETHROUGH + spaces + ChatColor.RESET + "" + c;
     }
 
     public static Database init(ScoreboardEssentials scoreboardEssentials) {
@@ -49,11 +65,26 @@ public class Database {
 
         scoreboardEssentials.getLogger().info("Loaded " + cRankPlaytimes.size() + " ranks.");
 
+        scoreboardHeader = scoreboardEssentials.getConfig().getString("header");
+        scoreboardFooter = scoreboardEssentials.getConfig().getString("footer");
+        maxPlayers = scoreboardEssentials.getConfig().getString("maxPlayers");
+
         return new Database(scoreboardEssentials);
     }
 
     public static ArrayList<Rank> getRanks() {
         return ranks;
+    }
+
+    public static String getHeader() {
+        int players = Bukkit.getOnlinePlayers().size();
+        
+        return ChatColor.translateAlternateColorCodes('&', Database.scoreboardHeader) + "\n" +
+            getLine(7, ChatColor.DARK_GRAY) + "[ " + ChatColor.RED + players + ChatColor.DARK_GRAY + "/" + ChatColor.RED + maxPlayers + ChatColor.DARK_GRAY + " ]" + getLine(7, ChatColor.DARK_GRAY) + "\n";
+    }
+
+    public static String getFooter(Player player) {
+        return ChatColor.translateAlternateColorCodes('&', "\n" + getLine(17, ChatColor.DARK_GRAY) + "\n" + Database.scoreboardFooter.replace("{ping}", Math.round(player.getPing()) + ""));
     }
 
     public ScoreboardEssentials getPlugin() {

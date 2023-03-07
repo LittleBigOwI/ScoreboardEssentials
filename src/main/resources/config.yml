@@ -6,3 +6,12 @@ playtime: [0, 500, 1000, 1500, 2000, 2500]
 
 # The color of each rank
 colors: [aaaaaa, 59deff, 59afff, 5975ff, ffaa00, ffaa00]
+
+# Scoreboard header color coded with '&'
+header: PhiloCraft
+
+# Scoreboard footer color coded with '&'
+footer: "Ping : {ping}"
+
+# Max player slots on the server
+maxPlayers: 10

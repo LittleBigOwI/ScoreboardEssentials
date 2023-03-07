@@ -86,6 +86,9 @@ public class EssentialsScoreboard {
                 }
 
                 this.playtime.getScore(player.getName()).setScore(Rank.getHourPlaytime(player));
+                player.setPlayerListHeader(Database.getHeader());
+                player.setPlayerListFooter(Database.getFooter(player));
+                
                 player.setScoreboard(this.scoreboard);
 
                 this.getTeam(player).addEntry(player.getName());

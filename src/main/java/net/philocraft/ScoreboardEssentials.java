@@ -1,30 +1,32 @@
 package net.philocraft;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import dev.littlebigowl.api.EssentialsAPI;
+import dev.littlebigowl.api.models.EssentialsTeam;
 import net.philocraft.events.OnPlayerJoinEvent;
 import net.philocraft.events.OnPlayerQuitEvent;
-import net.philocraft.models.Database;
-import net.philocraft.models.EssentialsScoreboard;
 
 public final class ScoreboardEssentials extends JavaPlugin {
     
-    private static Database database;
-    private static EssentialsScoreboard scoreboard;
-    
-    public static Database getDatabase() {
-        return database;
-    }
-
-    public static EssentialsScoreboard getScoreboard() {
-        return scoreboard;
-    }
+    public static final EssentialsAPI api = (EssentialsAPI) Bukkit.getServer().getPluginManager().getPlugin("EssentialsAPI");
 
     @Override
     public void onEnable() {
-        database = Database.init(this);
-        scoreboard = new EssentialsScoreboard(this);
-        scoreboard.update();
+        
+        this.getServer().getScheduler().runTaskTimer(this, () -> {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                EssentialsTeam rank = api.scoreboard.getEssentialsTeam(player);
+                
+                if(rank == null) {
+                    rank = api.scoreboard.setTeam(player);
+                }
+                
+                api.scoreboard.setScores(player);
+            }
+        }, 0, 10);
 
         //!REGISTER EVENTS
         this.getServer().getPluginManager().registerEvents(new OnPlayerJoinEvent(), this);

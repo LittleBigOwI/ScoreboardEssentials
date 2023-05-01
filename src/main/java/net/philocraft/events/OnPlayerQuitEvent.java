@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import net.philocraft.constants.Colors;
+import dev.littlebigowl.api.constants.Colors;
 
 public class OnPlayerQuitEvent implements Listener {
     
@@ -13,9 +13,9 @@ public class OnPlayerQuitEvent implements Listener {
     public void onPlayerJoin(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         String msg = 
-            Colors.OBFUSCATE.getChatColor() + "[" +
+            Colors.MINOR.getChatColor() + "[" +
             Colors.FAILURE.getChatColor() + "-" +
-            Colors.OBFUSCATE.getChatColor() + "] " + player.getName();
+            Colors.MINOR.getChatColor() + "] " + player.getName();
 
         event.setQuitMessage(msg);
     }

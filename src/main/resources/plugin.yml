@@ -6,3 +6,5 @@ authors: [ LittleBigOwl ]
 description: A custom configurable style plugin. Styles the scoreboard and the join message.
 website: littlebigowl.dev
 prefix: ScoreboardEssentials
+
+depend: [EssentialsAPI]

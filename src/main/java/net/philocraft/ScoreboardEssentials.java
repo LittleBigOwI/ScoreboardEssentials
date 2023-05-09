@@ -5,7 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.littlebigowl.api.EssentialsAPI;
-import dev.littlebigowl.api.models.EssentialsTeam;
 import net.philocraft.events.OnPlayerChatEvent;
 import net.philocraft.events.OnPlayerJoinEvent;
 import net.philocraft.events.OnPlayerQuitEvent;
@@ -19,15 +18,11 @@ public final class ScoreboardEssentials extends JavaPlugin {
         
         this.getServer().getScheduler().runTaskTimer(this, () -> {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                EssentialsTeam rank = api.scoreboard.getEssentialsTeam(player);
-                
-                if(rank == null) {
-                    rank = api.scoreboard.setTeam(player);
-                }
-                
+                api.scoreboard.setTeam(player);
                 api.scoreboard.setScores(player);
+                api.scoreboard.setScoreboard(player);
             }
-        }, 0, 10);
+        }, 0, 20);
 
         //!REGISTER EVENTS
         this.getServer().getPluginManager().registerEvents(new OnPlayerJoinEvent(), this);

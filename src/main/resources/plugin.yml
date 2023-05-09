@@ -2,7 +2,7 @@ name: ScoreboardEssentials
 version: ${project.version}
 main: net.philocraft.ScoreboardEssentials
 api-version: 1.19
-authors: [ LittleBigOwl ]
+authors: [LittleBigOwl]
 description: A custom configurable style plugin. Styles the scoreboard and the join message.
 website: littlebigowl.dev
 prefix: ScoreboardEssentials

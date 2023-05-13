@@ -21,6 +21,8 @@ public final class ScoreboardEssentials extends JavaPlugin {
                 api.scoreboard.setTeam(player);
                 api.scoreboard.setScores(player);
                 api.scoreboard.setScoreboard(player);
+
+                api.scoreboard.setTitles(player);
             }
         }, 0, 20);
 

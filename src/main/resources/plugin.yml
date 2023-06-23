@@ -8,3 +8,23 @@ website: littlebigowl.dev
 prefix: ScoreboardEssentials
 
 depend: [EssentialsAPI]
+
+commands:
+  alteritem:
+    usage: /<command> <name/lore> <text>
+    description: Allows the editing of item diplay names & lore
+    permission: philocraft.scoreboard.alteritem
+
+  trail:
+    usage: /<command> <set/remove> <particle>
+    description: Allows players to set a particle trail
+    permission: philocraft.scoreboard.trail
+
+permissions:
+  philocraft.scoreboard.alteritem:
+    description: Allows alteritem command
+    default: false
+
+  philocraft.scoreboard.trail:
+    description: Allows trail command
+    default: false

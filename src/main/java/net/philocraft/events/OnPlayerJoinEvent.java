@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import dev.littlebigowl.api.constants.Colors;
+import dev.littlebigowl.api.models.EssentialsPermission;
 
 public class OnPlayerJoinEvent implements Listener {
 
@@ -17,7 +18,13 @@ public class OnPlayerJoinEvent implements Listener {
             Colors.SUCCESS.getChatColor() + "+" +
             Colors.MINOR.getChatColor() + "] " + player.getName();
 
-        event.setJoinMessage(msg);     
+        
+        if(!EssentialsPermission.isVanished(player)) {
+            event.setJoinMessage(msg);
+        
+        } else {
+            event.setJoinMessage(null);
+        }
     }
 
 }

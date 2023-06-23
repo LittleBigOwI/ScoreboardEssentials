@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import dev.littlebigowl.api.constants.Colors;
+import dev.littlebigowl.api.models.EssentialsPermission;
 
 public class OnPlayerQuitEvent implements Listener {
     
@@ -17,6 +18,11 @@ public class OnPlayerQuitEvent implements Listener {
             Colors.FAILURE.getChatColor() + "-" +
             Colors.MINOR.getChatColor() + "] " + player.getName();
 
-        event.setQuitMessage(msg);
+        if(!EssentialsPermission.isVanished(player)) {
+            event.setQuitMessage(msg);
+        
+        } else {
+            event.setQuitMessage(null);
+        }
     }
 }

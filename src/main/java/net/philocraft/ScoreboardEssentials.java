@@ -34,20 +34,16 @@ public final class ScoreboardEssentials extends JavaPlugin {
         try {
             ParticleUtil.loadParticles();
         } catch (SQLException e) {
-            this.getLogger().severe("Copuldn't load particles : " + e.getMessage());
+            this.getLogger().severe("Couldn't load particles : " + e.getMessage());
         }
         
         this.getServer().getScheduler().runTaskTimer(this, () -> {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                EssentialsTeam oldTeam = api.scoreboard.getEssentialsTeam(player);
-                EssentialsTeam newTeam = api.scoreboard.setTeam(player);
+                EssentialsTeam team = api.scoreboard.setTeam(player);
 
-                if(!oldTeam.getName().equals(newTeam.getName())) {
+                if(team != null) {
                     EssentialsPermission.resetPermissions(player);
-                    newTeam.setPermissions(player);
-                
-                } else {
-                    oldTeam.setPermissions(player);
+                    team.setPermissions(player);
                 }
 
                 api.scoreboard.setScores(player);
